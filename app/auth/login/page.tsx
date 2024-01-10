@@ -4,7 +4,7 @@ import CardWrapper from '@/components/auth/CardWrapper'
 const LoginPage = () => {
     return (
         <CardWrapper 
-            headerLabel={'Welcome'}
+            headerLabel={'Welcome back'}
             backButtonLabel={'Don`t have an account?'} backButtonHref={'/auth/register'} 
             showSocial
         >

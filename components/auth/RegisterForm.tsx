@@ -3,7 +3,7 @@
 import {useForm} from 'react-hook-form'
 import * as z from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod';
-import { LoginSchema } from '@/schemas';
+import { RegisterSchema } from '@/schemas';
 import { useState, useTransition } from 'react';
 
 import { 
@@ -18,26 +18,27 @@ import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import FormError from '@/components/FormError';
 import FormSuccess from '@/components/FormSeccess';
-import { login } from '@/actions/login';
+import { register } from '@/actions/register';
 
-const LoginForm = () => {
+const RegisterForm = () => {
 
     const [error,setError] = useState<string | undefined>("")
     const [success,setSuccess] = useState<string | undefined>("")
 
     const [isPanding, startTransition] = useTransition()
 
-    const form = useForm<z.infer<typeof LoginSchema>>({
-        resolver: zodResolver(LoginSchema),
+    const form = useForm<z.infer<typeof RegisterSchema>>({
+        resolver: zodResolver(RegisterSchema),
         defaultValues: {
           email: "",
+          name: "",
           password: "",
         },
     });
 
-    const onSubmit = (values: z.infer<typeof LoginSchema>)=>{
+    const onSubmit = (values: z.infer<typeof RegisterSchema>)=>{
         startTransition(()=>{
-            login(values)
+            register(values)
                 .then((data)=>{
                     setError(data.error)
                     setSuccess(data.success)
@@ -73,6 +74,24 @@ const LoginForm = () => {
                     />
                     <FormField 
                         control={form.control} 
+                        name="name"
+                        render={({field})=>(
+                            <FormItem>
+                                <FormLabel>Name</FormLabel>
+                                <FormControl>
+                                    <Input 
+                                        {...field}
+                                        type="text"
+                                        disabled={isPanding}
+                                        placeholder='example Name'
+                                    />
+                                </FormControl>
+                                <FormMessage/>
+                            </FormItem>
+                        )}
+                    />
+                    <FormField 
+                        control={form.control} 
                         name="password"
                         render={({field})=>(
                             <FormItem>
@@ -93,11 +112,11 @@ const LoginForm = () => {
                 <FormError message={error} />
                 <FormSuccess message={success} />
                 <Button type='submit' className='w-full' disabled={isPanding}>
-                    Login
+                    Register
                 </Button>
             </form>
         </Form>
     );
 }
  
-export default LoginForm;
+export default RegisterForm;
