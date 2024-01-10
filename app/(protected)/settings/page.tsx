@@ -1,4 +1,5 @@
-import { auth } from "@/auth";
+import { auth, signOut } from "@/auth";
+import { Button } from "@/components/ui/button";
 
 const Settings = async () => {
 
@@ -8,6 +9,19 @@ const Settings = async () => {
         <div className="">
             Settings page must be protected redircrt to it whene login
             <p>the session {JSON.stringify(session)}</p>
+            <form 
+                action={async ()=>{
+                    'use server'
+
+                    await signOut()
+                }}
+            >
+                <Button>
+                    <button type="submit">
+                        Sign Out
+                    </button>
+                </Button>
+            </form>
         </div>
     );
 }
