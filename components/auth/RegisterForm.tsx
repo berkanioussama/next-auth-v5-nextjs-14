@@ -3,8 +3,9 @@
 import {useForm} from 'react-hook-form'
 import * as z from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod';
-import { RegisterSchema } from '@/schemas';
+import bcrypt from 'bcrypt'
 import { useState, useTransition } from 'react';
+import { RegisterSchema } from '@/schemas';
 
 import { 
     Form,

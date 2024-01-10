@@ -25,7 +25,6 @@ export default function Home() {
               Sign in
             </Button>
           </LoginButton>
-          
         </div>
       </div>
     </main>
