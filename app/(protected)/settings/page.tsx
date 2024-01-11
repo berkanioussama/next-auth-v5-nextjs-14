@@ -16,10 +16,8 @@ const Settings = async () => {
                     await signOut()
                 }}
             >
-                <Button>
-                    <button type="submit">
-                        Sign Out
-                    </button>
+                <Button type="submit">
+                    Sign Out
                 </Button>
             </form>
         </div>
