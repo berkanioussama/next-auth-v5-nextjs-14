@@ -7,6 +7,7 @@ export const authRoutes = [
     /** the pathes used for authentication*/
     "/auth/login",
     "/auth/register",
+    "/auth/error",
 ]
 
 export const adminRoutes = [
