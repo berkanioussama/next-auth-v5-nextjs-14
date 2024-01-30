@@ -1,11 +1,15 @@
 interface EmailTemplateProps {
-  firstName: string;
+  confirmLink: string;
 }
 
 export const EmailTemplate: React.FC<Readonly<EmailTemplateProps>> = ({
-  firstName,
-}) => (
-  <div>
-    <h1>Welcome, {firstName}!</h1>
-  </div>
-);
+  confirmLink,
+}) => {
+  return(
+    <div>
+      <h2>Click <a href={confirmLink}>to confirm email</a></h2>
+    </div>
+  )
+};
+
+export default EmailTemplate;
