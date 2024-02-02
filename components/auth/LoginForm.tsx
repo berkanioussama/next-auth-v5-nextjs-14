@@ -20,6 +20,7 @@ import { Button } from '@/components/ui/button';
 import FormError from '@/components/FormError';
 import FormSuccess from '@/components/FormSeccess';
 import { login } from '@/actions/login';
+import Link from 'next/link';
 
 const LoginForm = () => {
 
@@ -48,7 +49,6 @@ const LoginForm = () => {
                     setSuccess(data?.success)
                 })
         })
-        
     }
 
     return (
@@ -90,6 +90,11 @@ const LoginForm = () => {
                                         placeholder='********'
                                     />
                                 </FormControl>
+                                <Button size="sm" variant="link" asChild className='px-0 font-normal'>
+                                    <Link href="/auth/reset">
+                                        Forget password?
+                                    </Link>
+                                </Button>
                                 <FormMessage/>
                             </FormItem>
                         )}

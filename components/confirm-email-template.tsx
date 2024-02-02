@@ -2,7 +2,7 @@ interface EmailTemplateProps {
   confirmLink: string;
 }
 
-export const EmailTemplate: React.FC<Readonly<EmailTemplateProps>> = ({
+export const ConfirmEmailTemplate: React.FC<Readonly<EmailTemplateProps>> = ({
   confirmLink,
 }) => {
   return(
@@ -12,4 +12,4 @@ export const EmailTemplate: React.FC<Readonly<EmailTemplateProps>> = ({
   )
 };
 
-export default EmailTemplate;
+export default ConfirmEmailTemplate;
