@@ -1,6 +1,7 @@
 export const publicRoutes = [
     /** the pathes can see it with out log in */
     "/",
+    "/auth/new-verification"
 ]
 
 export const authRoutes = [
