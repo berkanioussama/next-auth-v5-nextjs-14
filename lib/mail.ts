@@ -22,8 +22,8 @@ export const sendPasswordResetEmail = async (email: string, token: string) => {
     await resend.emails.send({
         from: "onboarding@resend.dev",
         to: email,
-        subject: "Confirm your email",
+        subject: "Reset your password",
         react: ResetPasswordEmailTemplate({resetLink}),
-        text: "email template field"
+        text: "reset password template field"
     })
 }
