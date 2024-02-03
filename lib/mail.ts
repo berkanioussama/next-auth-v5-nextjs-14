@@ -27,3 +27,13 @@ export const sendPasswordResetEmail = async (email: string, token: string) => {
         text: "reset password template field"
     })
 }
+
+export const sendTwoFactorEmail = async (email: string, token: string) => {
+
+    await resend.emails.send({
+        from: "onboarding@resend.dev",
+        to: email,
+        subject: "2FA code",
+        html: `<h2>Your 2FA code: ${token}</h2>`
+    })
+}

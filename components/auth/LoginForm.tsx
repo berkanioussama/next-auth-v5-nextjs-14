@@ -32,6 +32,8 @@ const LoginForm = () => {
 
     const [isPanding, startTransition] = useTransition()
 
+    const [showTowFactor, setShowTowFactor] = useState(false)
+
     const form = useForm<z.infer<typeof LoginSchema>>({
         resolver: zodResolver(LoginSchema),
         defaultValues: {
@@ -44,10 +46,21 @@ const LoginForm = () => {
         startTransition(()=>{
             login(values)
                 .then((data)=>{
-                    setError(data?.error)
-                    // add success whene ad 2fa
-                    setSuccess(data?.success)
+                    if (data?.error) {
+                        form.reset()
+                        setError(data?.error)
+                    }
+                    if (data?.success) {
+                        form.reset()
+                        setError(data?.success)
+                    }
+                    
+                    //  2fa
+                    if (data?.twoFactor) {
+                        setShowTowFactor(true)
+                    }
                 })
+                    .catch(()=>setError("Somthing went wrong in login"))
         })
     }
 
@@ -57,6 +70,30 @@ const LoginForm = () => {
                 onSubmit={form.handleSubmit(onSubmit)}
                 className='space-y-6'
             >
+                {showTowFactor && (
+                <div className='space-y-4'>
+                    <FormField 
+                        control={form.control} 
+                        name="code"
+                        render={({field})=>(
+                            <FormItem>
+                                <FormLabel>Two factor code</FormLabel>
+                                <FormControl>
+                                    <Input 
+                                        {...field}
+                                        type="text"
+                                        disabled={isPanding}
+                                        placeholder='123456'
+                                    />
+                                </FormControl>
+                                <FormMessage/>
+                            </FormItem>
+                        )}
+                    />
+                </div>
+                )}
+
+                {!showTowFactor && (
                 <div className='space-y-4'>
                     <FormField 
                         control={form.control} 
@@ -100,10 +137,11 @@ const LoginForm = () => {
                         )}
                     />
                 </div>
+                )}
                 <FormError message={error || urlError} />
                 <FormSuccess message={success} />
                 <Button type='submit' className='w-full' disabled={isPanding}>
-                    Login
+                    {showTowFactor ? "Confirm" : "Login"}
                 </Button>
             </form>
         </Form>
