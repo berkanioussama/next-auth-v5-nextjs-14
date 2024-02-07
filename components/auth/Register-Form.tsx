@@ -3,8 +3,9 @@
 import {useForm} from 'react-hook-form'
 import * as z from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod';
+import bcrypt from 'bcrypt'
 import { useState, useTransition } from 'react';
-import { useSearchParams } from 'next/navigation';
+import { RegisterSchema } from '@/schemas';
 
 import { 
     Form,
@@ -14,53 +15,35 @@ import {
     FormControl,
     FormMessage
 } from '@/components/ui/form';
-import { LoginSchema } from '@/schemas';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
-import FormError from '@/components/FormError';
-import FormSuccess from '@/components/FormSeccess';
-import { login } from '@/actions/login';
-import Link from 'next/link';
+import FormError from '@/components/Form-Error';
+import FormSuccess from '@/components/Form-Seccess';
+import { register } from '@/actions/register';
 
-const LoginForm = () => {
-
-    const searchParams = useSearchParams()
-    const urlError = searchParams.get("error") === "OAuthAccountNotLinked" ? "Email already in use with other Oauth" : "";
+const RegisterForm = () => {
 
     const [error,setError] = useState<string | undefined>("")
     const [success,setSuccess] = useState<string | undefined>("")
 
     const [isPanding, startTransition] = useTransition()
 
-    const [showTowFactor, setShowTowFactor] = useState(false)
-
-    const form = useForm<z.infer<typeof LoginSchema>>({
-        resolver: zodResolver(LoginSchema),
+    const form = useForm<z.infer<typeof RegisterSchema>>({
+        resolver: zodResolver(RegisterSchema),
         defaultValues: {
           email: "",
+          name: "",
           password: "",
         },
     });
 
-    const onSubmit = (values: z.infer<typeof LoginSchema>)=>{
+    const onSubmit = (values: z.infer<typeof RegisterSchema>)=>{
         startTransition(()=>{
-            login(values)
+            register(values)
                 .then((data)=>{
-                    if (data?.error) {
-                        form.reset()
-                        setError(data?.error)
-                    }
-                    if (data?.success) {
-                        form.reset()
-                        setError(data?.success)
-                    }
-                    
-                    //  2fa
-                    if (data?.twoFactor) {
-                        setShowTowFactor(true)
-                    }
+                    setError(data.error)
+                    setSuccess(data.success)
                 })
-                    .catch(()=>setError("Somthing went wrong in login"))
         })
     }
 
@@ -70,30 +53,6 @@ const LoginForm = () => {
                 onSubmit={form.handleSubmit(onSubmit)}
                 className='space-y-6'
             >
-                {showTowFactor && (
-                <div className='space-y-4'>
-                    <FormField 
-                        control={form.control} 
-                        name="code"
-                        render={({field})=>(
-                            <FormItem>
-                                <FormLabel>Two factor code</FormLabel>
-                                <FormControl>
-                                    <Input 
-                                        {...field}
-                                        type="text"
-                                        disabled={isPanding}
-                                        placeholder='123456'
-                                    />
-                                </FormControl>
-                                <FormMessage/>
-                            </FormItem>
-                        )}
-                    />
-                </div>
-                )}
-
-                {!showTowFactor && (
                 <div className='space-y-4'>
                     <FormField 
                         control={form.control} 
@@ -115,6 +74,24 @@ const LoginForm = () => {
                     />
                     <FormField 
                         control={form.control} 
+                        name="name"
+                        render={({field})=>(
+                            <FormItem>
+                                <FormLabel>Name</FormLabel>
+                                <FormControl>
+                                    <Input 
+                                        {...field}
+                                        type="text"
+                                        disabled={isPanding}
+                                        placeholder='example Name'
+                                    />
+                                </FormControl>
+                                <FormMessage/>
+                            </FormItem>
+                        )}
+                    />
+                    <FormField 
+                        control={form.control} 
                         name="password"
                         render={({field})=>(
                             <FormItem>
@@ -127,25 +104,19 @@ const LoginForm = () => {
                                         placeholder='********'
                                     />
                                 </FormControl>
-                                <Button size="sm" variant="link" asChild className='px-0 font-normal'>
-                                    <Link href="/auth/reset">
-                                        Forget password?
-                                    </Link>
-                                </Button>
                                 <FormMessage/>
                             </FormItem>
                         )}
                     />
                 </div>
-                )}
-                <FormError message={error || urlError} />
+                <FormError message={error} />
                 <FormSuccess message={success} />
                 <Button type='submit' className='w-full' disabled={isPanding}>
-                    {showTowFactor ? "Confirm" : "Login"}
+                    Register
                 </Button>
             </form>
         </Form>
     );
 }
  
-export default LoginForm;
+export default RegisterForm;

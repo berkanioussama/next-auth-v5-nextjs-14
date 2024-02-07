@@ -1,4 +1,4 @@
-import CardWrapper from "@/components/auth/CardWrapper";
+import CardWrapper from "@/components/auth/Card-Wrapper";
 import ResetForm from "@/components/auth/Reset-Form";
 
 const Reset = () => {

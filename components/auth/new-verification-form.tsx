@@ -5,9 +5,9 @@ import { BeatLoader } from "react-spinners";
 import { useSearchParams } from "next/navigation";
 
 import { newVerification } from "@/actions/new-verification";
-import CardWrapper from "@/components/auth/CardWrapper";
-import  FormError  from "@/components/FormError";
-import  FormSuccess  from "@/components/FormSeccess";
+import CardWrapper from "@/components/auth/Card-Wrapper";
+import  FormError  from "@/components/Form-Error";
+import  FormSuccess  from "@/components/Form-Seccess";
 
 export const NewVerificationForm = () => {
   const [error, setError] = useState<string | undefined>();

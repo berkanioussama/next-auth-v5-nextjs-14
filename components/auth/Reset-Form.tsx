@@ -3,8 +3,8 @@
 import { Button } from "@/components/ui/button";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import FormError from "@/components/FormError";
-import FormSuccess from "@/components/FormSeccess";
+import FormError from "@/components/Form-Error";
+import FormSuccess from "@/components/Form-Seccess";
 import { useState, useTransition } from "react";
 import { ResetSchema } from "@/schemas";
 import { useForm } from "react-hook-form";

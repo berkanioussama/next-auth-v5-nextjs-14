@@ -1,5 +1,5 @@
-import CardWrapper from '@/components/auth/CardWrapper';
-import ErrorCard from '@/components/auth/ErrorCard'
+import CardWrapper from '@/components/auth/Card-Wrapper';
+import ErrorCard from '@/components/auth/Error-Card'
 
 const AuthErrorPage = () => {
     return (

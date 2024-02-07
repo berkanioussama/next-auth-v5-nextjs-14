@@ -1,4 +1,4 @@
-import CardWrapper from '@/components/auth/CardWrapper'
+import CardWrapper from '@/components/auth/Card-Wrapper'
 import { NewPasswordForm } from '@/components/auth/new-password-form';
 
 const NewPasswordPage = () => {

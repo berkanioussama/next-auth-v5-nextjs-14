@@ -3,14 +3,14 @@
 import { Button } from "@/components/ui/button";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import FormError from "@/components/FormError";
-import FormSuccess from "@/components/FormSeccess";
+import FormError from "@/components/Form-Error";
+import FormSuccess from "@/components/Form-Seccess";
 import { useState, useTransition } from "react";
 import { NewPasswordSchema } from "@/schemas";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
-import { newPassword } from '@/actions/newPassword';
+import { newPassword } from '@/actions/new-password';
 import { useSearchParams } from "next/navigation";
 
 export const NewPasswordForm = () => {
