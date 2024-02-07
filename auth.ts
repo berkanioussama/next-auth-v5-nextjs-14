@@ -64,6 +64,10 @@ export const {
         session.user.role = token.role as UserRole
       }
 
+      if(session.user){
+        session.user.isTowFactorEnabled = token.isTowFactorEnabled as boolean
+      }
+
       return session;
     },
     async jwt({ token }){
@@ -73,6 +77,7 @@ export const {
       if (!existingUser) { return token; }
 
       token.role = existingUser.role
+      token.isTwoFactorEnabled = existingUser.isTwoFactorEnabled
 
       return token;
     }

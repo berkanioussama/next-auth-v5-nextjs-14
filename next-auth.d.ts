@@ -3,6 +3,7 @@ import { UserRole } from "@prisma/client";
 
 export type ExtendedUser = DefaultSession["user"] & {
     role: UserRole
+    isTowFactorEnabled: boolean
 };
 
 declare module "next-auth" {
