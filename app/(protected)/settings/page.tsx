@@ -1,25 +1,25 @@
-import { auth, signOut } from "@/auth";
+"use client"
+
+import { logout } from "@/actions/logout";
 import { Button } from "@/components/ui/button";
+import { useCurrentUser } from "@/hooks/use-current-user";
+import { useSession } from "next-auth/react";
 
-const Settings = async () => {
+const Settings = () => {
 
-    const session = await auth()
+    const user = useCurrentUser()
+
+    const onLogout = () => {
+        logout()
+    }
 
     return (
-        <div className="">
+        <div className="p-6 bg-neutral-50">
             Settings page must be protected redircrt to it whene login
-            <p>the session {JSON.stringify(session)}</p>
-            <form 
-                action={async ()=>{
-                    'use server'
-
-                    await signOut()
-                }}
-            >
-                <Button type="submit">
-                    Sign Out
-                </Button>
-            </form>
+            <p>the session {JSON.stringify(user)}</p>
+            <Button type="submit" onClick={onLogout}>
+                Sign Out
+            </Button>
         </div>
     );
 }
