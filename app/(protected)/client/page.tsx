@@ -3,9 +3,9 @@
 import UserInfo from "@/components/User-Info";
 import { useCurrentUser } from "@/hooks/use-current-user";
 
-const ClientPage = async () => {
+const ClientPage = () => {
 
-    const user = await useCurrentUser()
+    const user = useCurrentUser()
 
     return (
         <div>
