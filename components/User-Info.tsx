@@ -57,9 +57,9 @@ const UserInfo = ({user, label}: UserInfoProps) => {
                         Two factor authentication: 
                     </p>
                     <Badge 
-                        variant={user?.isTowFactorEnabled ? "success" : "destructive"}
+                        variant={user?.isTwoFactorEnabled ? "success" : "destructive"}
                     >
-                        {user?.isTowFactorEnabled ? "ON" : "OFF"}
+                        {user?.isTwoFactorEnabled ? "ON" : "OFF"}
                     </Badge>
                 </div>
             </CardContent>
