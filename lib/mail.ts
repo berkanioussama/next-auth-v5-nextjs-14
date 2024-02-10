@@ -1,6 +1,6 @@
 import { Resend } from "resend";
-import ConfirmEmailTemplate from "@/components/Confirm-Email-Template";
-import ResetPasswordEmailTemplate from "@/components/Reset-Password-Email-Template";
+import ConfirmEmailTemplate from "@/components/confirm-email-template";
+import ResetPasswordEmailTemplate from "@/components/reset-password-email-template";
 
 const resend = new Resend(process.env.RESEND_API_KEY)
 
