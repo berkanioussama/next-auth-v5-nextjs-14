@@ -10,6 +10,6 @@ const ResetPasswordEmailTemplate: React.FC<Readonly<ResetPasswordEmailTemplatePr
       <h2>Click <a href={resetLink}>to reset your password</a></h2>
     </div>
   )
-};
+}
 
 export default ResetPasswordEmailTemplate;

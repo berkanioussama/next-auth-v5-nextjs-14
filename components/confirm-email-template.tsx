@@ -10,6 +10,6 @@ const ConfirmEmailTemplate: React.FC<Readonly<EmailTemplateProps>> = ({
       <h2>Click <a href={confirmLink}>to confirm email</a></h2>
     </div>
   )
-};
+}
 
 export default ConfirmEmailTemplate;
