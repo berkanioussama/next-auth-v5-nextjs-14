@@ -47,7 +47,6 @@ const Settings = () => {
                 .catch(()=> setError("Somthing went wrong!"))
         })
     }
-    console.log(user?.isTwoFactorEnabled)
 
     const form = useForm<z.infer<typeof SettingsSchema>>({
         resolver: zodResolver(SettingsSchema),

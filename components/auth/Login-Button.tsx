@@ -1,6 +1,9 @@
 'use client'
 
 import { useRouter } from "next/navigation";
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import LoginForm from "@/components/auth/Login-Form";
+import CardWrapper from "@/components/auth/Card-Wrapper";
 
 interface LoginButtonProps{
     children: React.ReactNode;
@@ -17,9 +20,20 @@ const LoginButton: React.FC<LoginButtonProps> = ({children,mode = "redirect",asC
 
     if(mode === "modal"){
         return (
-            <div className="cursor-pointer">
-                TODO: create the modal here
-            </div>
+            <Dialog>
+                <DialogTrigger asChild={asChild}>
+                    {children}
+                </DialogTrigger>
+                <DialogContent className="p-0 w-auto bg-transparent border-none">
+                    <CardWrapper 
+                        headerLabel={'Welcome back'}
+                        backButtonLabel={'Don`t have an account?'} backButtonHref={'/auth/register'} 
+                        showSocial
+                    >
+                        <LoginForm/>
+                    </CardWrapper>
+                </DialogContent>
+            </Dialog>
         );
     }
     return (
