@@ -2,7 +2,7 @@ interface EmailTemplateProps {
   confirmLink: string;
 }
 
-export const ConfirmEmailTemplate: React.FC<Readonly<EmailTemplateProps>> = ({
+const ConfirmEmailTemplate: React.FC<Readonly<EmailTemplateProps>> = ({
   confirmLink,
 }) => {
   return(

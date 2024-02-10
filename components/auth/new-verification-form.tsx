@@ -9,7 +9,7 @@ import CardWrapper from "@/components/auth/Card-Wrapper";
 import  FormError  from "@/components/Form-Error";
 import  FormSuccess  from "@/components/Form-Seccess";
 
-export const NewVerificationForm = () => {
+const NewVerificationForm = () => {
   const [error, setError] = useState<string | undefined>();
   const [success, setSuccess] = useState<string | undefined>();
 
@@ -57,3 +57,5 @@ export const NewVerificationForm = () => {
     </CardWrapper>
   )
 }
+
+export default NewVerificationForm

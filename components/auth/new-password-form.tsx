@@ -13,7 +13,7 @@ import * as z from "zod";
 import { newPassword } from '@/actions/new-password';
 import { useSearchParams } from "next/navigation";
 
-export const NewPasswordForm = () => {
+const NewPasswordForm = () => {
 
     const searchParams = useSearchParams();
 
@@ -79,3 +79,5 @@ export const NewPasswordForm = () => {
         </Form>
     )
 }
+
+export default NewPasswordForm

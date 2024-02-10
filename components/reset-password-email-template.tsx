@@ -2,7 +2,7 @@ interface ResetPasswordEmailTemplateProps {
   resetLink: string;
 }
 
-export const ResetPasswordEmailTemplate: React.FC<Readonly<ResetPasswordEmailTemplateProps>> = ({
+const ResetPasswordEmailTemplate: React.FC<Readonly<ResetPasswordEmailTemplateProps>> = ({
   resetLink,
 }) => {
   return(
