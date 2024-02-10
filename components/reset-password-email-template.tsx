@@ -3,7 +3,7 @@ interface ResetPasswordEmailTemplateProps {
 }
 
 const ResetPasswordEmailTemplate: React.FC<Readonly<ResetPasswordEmailTemplateProps>> = ({
-  resetLink,
+  resetLink
 }) => {
   return(
     <div>

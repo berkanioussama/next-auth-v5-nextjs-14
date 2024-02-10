@@ -3,7 +3,7 @@ interface EmailTemplateProps {
 }
 
 const ConfirmEmailTemplate: React.FC<Readonly<EmailTemplateProps>> = ({
-  confirmLink,
+  confirmLink
 }) => {
   return(
     <div>
